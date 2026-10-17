@@ -11,15 +11,15 @@ namespace Lab2
         private RectangleShape _current;
 
         public void MouseDown(Point p){
-            _current = new RectangleShape { Start = p, End = p };
+            _current = new RectangleShape { Start = new Dot(p.X, p.Y), End = new Dot(p.X, p.Y) };
         }
         public void MouseMove(Point p){
-            if (_current != null) _current.End = p;
+            if (_current != null) _current.End = new Dot(p.X, p.Y);
         }
         public void MouseUp(Point p)
         {
             if (_current == null) return;
-            _current.End = p;
+            _current.End = new Dot(p.X, p.Y);
             Shapes.Add(_current);
             _current = null;
         }
