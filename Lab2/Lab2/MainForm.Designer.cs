@@ -67,38 +67,43 @@
             obj_btn.Name = "obj_btn";
             obj_btn.Size = new Size(73, 24);
             obj_btn.Text = "Objects";
+            obj_btn.Click += obj_btn_Click;
             // 
             // dotToolStripMenuItem
             // 
             dotToolStripMenuItem.Name = "dotToolStripMenuItem";
             dotToolStripMenuItem.Size = new Size(224, 26);
             dotToolStripMenuItem.Text = "Dot";
+            dotToolStripMenuItem.Click += dotToolStripMenuItem_Click;
             // 
             // lineToolStripMenuItem
             // 
             lineToolStripMenuItem.Name = "lineToolStripMenuItem";
             lineToolStripMenuItem.Size = new Size(224, 26);
             lineToolStripMenuItem.Text = "Line";
+            lineToolStripMenuItem.Click += lineToolStripMenuItem_Click;
             // 
             // rectangleToolStripMenuItem
             // 
             rectangleToolStripMenuItem.Name = "rectangleToolStripMenuItem";
             rectangleToolStripMenuItem.Size = new Size(224, 26);
             rectangleToolStripMenuItem.Text = "Rectangle";
+            rectangleToolStripMenuItem.Click += rectangleToolStripMenuItem_Click;
             // 
             // ellipseToolStripMenuItem
             // 
             ellipseToolStripMenuItem.Name = "ellipseToolStripMenuItem";
             ellipseToolStripMenuItem.Size = new Size(224, 26);
             ellipseToolStripMenuItem.Text = "Ellipse";
+            ellipseToolStripMenuItem.Click += ellipseToolStripMenuItem_Click;
             // 
-            // Main
+            // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(toolStrip1);
-            Name = "Main";
+            Name = "MainForm";
             Text = "Lab2";
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
