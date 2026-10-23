@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Drawing;
+﻿using System.Drawing;
 
 namespace Lab2
 {
@@ -16,9 +12,10 @@ namespace Lab2
             Y = y;
         }
 
-        public override void Draw(Graphics g)
+        public override void Draw(Graphics g, Pen pen)
         {
-            g.FillEllipse(Brushes.Black, X - 4, Y - 4, 8, 8); // circle to represent the dot
+            using var brush = new SolidBrush(pen.Color);
+            g.FillEllipse(brush, X - 4, Y - 4, 8, 8);
         }
     }
 }

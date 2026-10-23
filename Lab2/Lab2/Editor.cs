@@ -1,15 +1,18 @@
-﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 
 namespace Lab2
 {
     public class Editor
     {
-        public List<Shape> Shapes = new();
-        private Shape _current;
+        private const float BorderWidth = 2f;
+
+        public Color color = Color.Black;
+        public DashStyle border_style = DashStyle.Solid;
+
+        public List<Shape> Shapes = new(115);
+        private Shape? _current;
         public ShapeType CurrentTool = ShapeType.Rectangle;
 
         public void MouseDown(Point p){
@@ -31,6 +34,12 @@ namespace Lab2
                     _current = null;
                     break;
             }
+
+            if (_current != null)
+            {
+                _current.Color = color;
+                _current.BorderStyle = border_style;
+            }
         }
         public void MouseMove(Point p){
             if (_current != null) _current.End = p;
@@ -43,10 +52,39 @@ namespace Lab2
             _current = null;
         }
 
+        public void SetColor(Color color)
+        {
+            this.color = color;
+        }
+
+        public void SetBorderStyle(DashStyle style)
+        {
+            border_style = style;
+        }
+
+        public void Clear()
+        {
+            Shapes.Clear();
+            _current = null;
+        }
+
         public void Draw(Graphics g)
         {
-            foreach (var s in Shapes) s.Draw(g); //BRAINFUCK always redraw all shapes, maybe better use Bitmap to cashing
-            _current?.Draw(g);
+            foreach (var shape in Shapes)
+                DrawShape(g, shape);
+
+            if (_current != null)
+                DrawShape(g, _current);
+        }
+
+        private static void DrawShape(Graphics g, Shape shape)
+        {
+            using var pen = new Pen(shape.Color, BorderWidth)
+            {
+                DashStyle = shape.BorderStyle
+            };
+
+            shape.Draw(g, pen);
         }
     }
 }
