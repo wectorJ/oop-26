@@ -70,20 +70,20 @@ namespace Lab2
 
         public void Draw(Graphics g)
         {
-            foreach (var shape in Shapes)
-                DrawShape(g, shape);
+            using var pen = new Pen(Color.Black, BorderWidth);
+
+            foreach (var shape in Shapes) //BRAINFUCK maybe better use Bitmap for caching
+                DrawShape(g, shape, pen);
 
             if (_current != null)
-                DrawShape(g, _current);
+                DrawShape(g, _current, pen);
         }
 
-        private static void DrawShape(Graphics g, Shape shape)
+        private static void DrawShape(Graphics g, Shape shape, Pen pen)
         {
-            using var pen = new Pen(shape.Color, BorderWidth)
-            {
-                DashStyle = shape.BorderStyle
-            };
-
+            pen.Color = shape.Color;
+            pen.DashStyle = shape.BorderStyle;
+            
             shape.Draw(g, pen);
         }
     }

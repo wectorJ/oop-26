@@ -5,10 +5,25 @@ namespace Lab2
 {
     public class RectangleShape : Shape
     {
-        public int Left => Math.Min(Start.X, End.X);
-        public int Top => Math.Min(Start.Y, End.Y);
-        public int Width => Math.Abs(End.X - Start.X);
-        public int Height => Math.Abs(End.Y - Start.Y);
+        public int Left
+        {
+            get { return Math.Min(Start.X, End.X); }
+        }
+
+        public int Top
+        {
+            get { return Math.Min(Start.Y, End.Y); }
+        }
+
+        public int Width
+        {
+            get { return Math.Abs(End.X - Start.X); }
+        }
+
+        public int Height
+        {
+            get { return Math.Abs(End.Y - Start.Y); }
+        }
 
         public RectangleShape(Point s, Point e)
         {
