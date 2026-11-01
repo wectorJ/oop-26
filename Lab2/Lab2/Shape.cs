@@ -5,8 +5,8 @@ namespace Lab2
 {
     public abstract class Shape
     {
-        public Point Start;
-        public Point End;
+        public PointF Start;
+        public PointF End;
 
         public Color Color = Color.Black;
         public DashStyle BorderStyle = DashStyle.Solid;

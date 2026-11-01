@@ -5,7 +5,7 @@ namespace Lab2
 {
     public class LineShape : Shape
     {
-        public LineShape(Point s, Point e)
+        public LineShape(PointF s, PointF e)
         {
             Start = s;
             End = e;

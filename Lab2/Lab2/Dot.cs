@@ -4,10 +4,10 @@ namespace Lab2
 {
     public class DotShape: Shape
     {
-        public int X { get; set; }
-        public int Y { get; set; }
+        public float X { get => Start.X; set => Start = new PointF(value, Start.Y); }
+        public float Y { get => Start.Y; set => Start = new PointF(Start.X, value); }
 
-        public DotShape(int x, int y){
+        public DotShape(float x, float y){
             X = x;
             Y = y;
         }

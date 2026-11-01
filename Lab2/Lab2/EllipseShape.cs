@@ -5,28 +5,28 @@ namespace Lab2
 {
     public class EllipseShape : Shape
     {
-        public EllipseShape(Point s, Point e)
+        public EllipseShape(PointF s, PointF e)
         {
             Start = s;
             End = e;
         }
 
-        public int Left
+        public float Left
         {
             get { return Math.Min(Start.X, End.X); }
         }
 
-        public int Top
+        public float Top
         {
             get { return Math.Min(Start.Y, End.Y); }
         }
 
-        public int Width
+        public float Width
         {
             get { return Math.Abs(End.X - Start.X); }
         }
 
-        public int Height
+        public float Height
         {
             get { return Math.Abs(End.Y - Start.Y); }
         }

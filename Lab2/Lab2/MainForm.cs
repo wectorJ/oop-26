@@ -9,6 +9,9 @@ namespace Lab2
         {
             InitializeComponent();
             DoubleBuffered = true;
+
+            move_btn.CheckOnClick = true;
+            toolStrip2.ItemClicked += toolStrip2_ItemClicked;
         }
 
         protected override void OnMouseDown(MouseEventArgs e)
@@ -105,6 +108,17 @@ namespace Lab2
         {
             _editor.Clear();
             Invalidate();
+        }
+
+        private void toolStrip2_ItemClicked(object? sender, ToolStripItemClickedEventArgs e)
+        {
+            if (e.ClickedItem != move_btn)
+                move_btn.Checked = false;
+        }
+
+        private void move_btn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
