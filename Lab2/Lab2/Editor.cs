@@ -33,6 +33,12 @@ namespace Lab2
                 case ShapeType.Ellipse:
                     _current = new EllipseShape(p, p);
                     break;
+                case ShapeType.oLineo:
+                    _current = new oLineoShape(p, p);
+                    break;
+                case ShapeType.Cube:
+                    _current = new CubeShape(p, p);
+                    break;
                 default:
                     _current = null;
                     break;

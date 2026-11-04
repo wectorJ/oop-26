@@ -60,6 +60,12 @@ namespace Lab2
                 case nameof(ellipseToolStripMenuItem):
                     _editor.CurrentTool = ShapeType.Ellipse;
                     break;
+                case nameof(oLineOToolStripMenuItem):
+                    _editor.CurrentTool = ShapeType.oLineo;
+                    break;
+                case nameof(cubeToolStripMenuItem):
+                    _editor.CurrentTool = ShapeType.Cube;
+                    break;
                 default:
                     throw new InvalidOperationException($"Unknown menu item: {item.Name}");
             }
