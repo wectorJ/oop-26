@@ -12,6 +12,9 @@ namespace Lab2
         public DashStyle border_style = DashStyle.Solid;
 
         public List<Shape> Shapes = new(115);
+        private readonly Stack<Shape> _redo = new();
+        public bool CanUndo => Shapes.Count > 0;
+        public bool CanRedo => _redo.Count > 0;
         private Shape? _current;
         public ShapeType CurrentTool = ShapeType.Rectangle;
 
@@ -49,7 +52,24 @@ namespace Lab2
             if (_current == null) return;
             _current.End = p;
             Shapes.Add(_current);
+            _redo.Clear();
             _current = null;
+        }
+
+        public void Undo()
+        {
+            if (!CanUndo) return;
+
+            int last = Shapes.Count - 1;
+            _redo.Push(Shapes[last]);
+            Shapes.RemoveAt(last);
+        }
+
+        public void Redo()
+        {
+            if (!CanRedo) return;
+
+            Shapes.Add(_redo.Pop());
         }
 
         public void SetColor(Color color)
@@ -65,6 +85,7 @@ namespace Lab2
         public void Clear()
         {
             Shapes.Clear();
+            _redo.Clear();
             _current = null;
         }
 

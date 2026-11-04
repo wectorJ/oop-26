@@ -12,6 +12,7 @@ namespace Lab2
 
             move_btn.CheckOnClick = true;
             toolStrip2.ItemClicked += toolStrip2_ItemClicked;
+            UpdateHistoryButtons();
         }
 
         protected override void OnMouseDown(MouseEventArgs e)
@@ -29,6 +30,7 @@ namespace Lab2
         protected override void OnMouseUp(MouseEventArgs e)
         {
             _editor.MouseUp(e.Location);
+            UpdateHistoryButtons();
             Invalidate();
             Text = "Lab2";
             base.OnMouseUp(e);
@@ -107,7 +109,28 @@ namespace Lab2
         private void clear_btn_Click(object sender, EventArgs e)
         {
             _editor.Clear();
+            UpdateHistoryButtons();
             Invalidate();
+        }
+
+        private void undo_btn_Click(object sender, EventArgs e)
+        {
+            _editor.Undo();
+            UpdateHistoryButtons();
+            Invalidate();
+        }
+
+        private void redo_btn_Click(object sender, EventArgs e)
+        {
+            _editor.Redo();
+            UpdateHistoryButtons();
+            Invalidate();
+        }
+
+        private void UpdateHistoryButtons()
+        {
+            undo_btn.Enabled = _editor.CanUndo;
+            redo_btn.Enabled = _editor.CanRedo;
         }
 
         private void toolStrip2_ItemClicked(object? sender, ToolStripItemClickedEventArgs e)

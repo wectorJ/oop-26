@@ -48,6 +48,8 @@
             blackToolStripMenuItem = new ToolStripMenuItem();
             greenToolStripMenuItem = new ToolStripMenuItem();
             blueToolStripMenuItem = new ToolStripMenuItem();
+            undo_btn = new ToolStripButton();
+            redo_btn = new ToolStripButton();
             toolStrip1.SuspendLayout();
             toolStrip2.SuspendLayout();
             SuspendLayout();
@@ -84,7 +86,7 @@
             // toolStrip2
             // 
             toolStrip2.ImageScalingSize = new Size(40, 40);
-            toolStrip2.Items.AddRange(new ToolStripItem[] { move_btn, obj_btn, border_btn, color_btn });
+            toolStrip2.Items.AddRange(new ToolStripItem[] { move_btn, obj_btn, border_btn, color_btn, undo_btn, redo_btn });
             toolStrip2.Location = new Point(0, 27);
             toolStrip2.Name = "toolStrip2";
             toolStrip2.Size = new Size(800, 47);
@@ -113,29 +115,33 @@
             // 
             // dotToolStripMenuItem
             // 
+            dotToolStripMenuItem.Image = Properties.Resources.dot;
             dotToolStripMenuItem.Name = "dotToolStripMenuItem";
-            dotToolStripMenuItem.Size = new Size(158, 26);
+            dotToolStripMenuItem.Size = new Size(244, 46);
             dotToolStripMenuItem.Text = "Dot";
             dotToolStripMenuItem.Click += objectToolStripMenuItem_Click;
             // 
             // lineToolStripMenuItem
             // 
+            lineToolStripMenuItem.Image = Properties.Resources.line;
             lineToolStripMenuItem.Name = "lineToolStripMenuItem";
-            lineToolStripMenuItem.Size = new Size(158, 26);
+            lineToolStripMenuItem.Size = new Size(244, 46);
             lineToolStripMenuItem.Text = "Line";
             lineToolStripMenuItem.Click += objectToolStripMenuItem_Click;
             // 
             // rectangleToolStripMenuItem
             // 
+            rectangleToolStripMenuItem.Image = Properties.Resources.square;
             rectangleToolStripMenuItem.Name = "rectangleToolStripMenuItem";
-            rectangleToolStripMenuItem.Size = new Size(158, 26);
+            rectangleToolStripMenuItem.Size = new Size(244, 46);
             rectangleToolStripMenuItem.Text = "Rectangle";
             rectangleToolStripMenuItem.Click += objectToolStripMenuItem_Click;
             // 
             // ellipseToolStripMenuItem
             // 
+            ellipseToolStripMenuItem.Image = Properties.Resources.ellipse;
             ellipseToolStripMenuItem.Name = "ellipseToolStripMenuItem";
-            ellipseToolStripMenuItem.Size = new Size(158, 26);
+            ellipseToolStripMenuItem.Size = new Size(244, 46);
             ellipseToolStripMenuItem.Text = "Ellipse";
             ellipseToolStripMenuItem.Click += objectToolStripMenuItem_Click;
             // 
@@ -151,21 +157,21 @@
             // solidToolStripMenuItem
             // 
             solidToolStripMenuItem.Name = "solidToolStripMenuItem";
-            solidToolStripMenuItem.Size = new Size(171, 26);
+            solidToolStripMenuItem.Size = new Size(224, 26);
             solidToolStripMenuItem.Text = "Solid";
             solidToolStripMenuItem.Click += borderToolStripMenuItem_Click;
             // 
             // dotedToolStripMenuItem
             // 
             dotedToolStripMenuItem.Name = "dotedToolStripMenuItem";
-            dotedToolStripMenuItem.Size = new Size(171, 26);
+            dotedToolStripMenuItem.Size = new Size(224, 26);
             dotedToolStripMenuItem.Text = "Doted";
             dotedToolStripMenuItem.Click += borderToolStripMenuItem_Click;
             // 
             // dashDotedToolStripMenuItem
             // 
             dashDotedToolStripMenuItem.Name = "dashDotedToolStripMenuItem";
-            dashDotedToolStripMenuItem.Size = new Size(171, 26);
+            dashDotedToolStripMenuItem.Size = new Size(224, 26);
             dashDotedToolStripMenuItem.Text = "Dash Doted";
             dashDotedToolStripMenuItem.Click += borderToolStripMenuItem_Click;
             // 
@@ -207,6 +213,26 @@
             blueToolStripMenuItem.Text = "Blue";
             blueToolStripMenuItem.Click += colorToolStripMenuItem_Click;
             // 
+            // undo_btn
+            // 
+            undo_btn.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            undo_btn.Enabled = false;
+            undo_btn.Image = Properties.Resources.undo;
+            undo_btn.Name = "undo_btn";
+            undo_btn.Size = new Size(44, 44);
+            undo_btn.Text = "Undo";
+            undo_btn.Click += undo_btn_Click;
+            // 
+            // redo_btn
+            // 
+            redo_btn.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            redo_btn.Enabled = false;
+            redo_btn.Image = Properties.Resources.redo;
+            redo_btn.Name = "redo_btn";
+            redo_btn.Size = new Size(44, 44);
+            redo_btn.Text = "Redo";
+            redo_btn.Click += redo_btn_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -244,6 +270,8 @@
         private ToolStripMenuItem blueToolStripMenuItem;
         private ToolStripButton clear_btn;
         private ToolStripButton move_btn;
+        private ToolStripButton undo_btn;
+        private ToolStripButton redo_btn;
         private ToolStripMenuItem dotToolStripMenuItem;
     }
 }

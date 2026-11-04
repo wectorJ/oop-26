@@ -17,7 +17,7 @@
   <Class Name="Lab2.Editor">
     <Position X="9" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAEAAAAAAAAAkEAAAAAAAAAIABAFACAIAgABADAAAA=</HashCode>
+      <HashCode>AAAEAAAABAAABkEAAAQAAAABIABAFACAIAgABAHAAAA=</HashCode>
       <FileName>Editor.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -45,7 +45,7 @@
   <Class Name="Lab2.MainForm" Collapsed="true">
     <Position X="10.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAiAAAQIAihBABEAEFCAKBACIBAAIgAAIAAAgggCAQA=</HashCode>
+      <HashCode>AAiAAAQIAihBABEEEXCAKRACIJAAYgAIIAAAkggCAQA=</HashCode>
       <FileName>MainForm.cs</FileName>
     </TypeIdentifier>
   </Class>
