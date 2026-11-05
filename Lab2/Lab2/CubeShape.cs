@@ -22,27 +22,28 @@ namespace Lab2
 
         public override void Draw(Graphics g, Pen pen)
         {
-            //AI, maybe need optimized
-            float left = Math.Min(Start.X, End.X);
-            float right = Math.Max(Start.X, End.X);
-            float top = Math.Min(Start.Y, End.Y);
-            float bottom = Math.Max(Start.Y, End.Y);
-            float offset = 0.25f * Math.Min(right - left, bottom - top);
+            // Depth angle is 45 degrees; depth is half the width.
+            float c = 0.5f / MathF.Sqrt(2f);
+            float dx = End.X - Start.X;
+            float dy = End.Y - Start.Y;
+            float w = dx / (1f + c);
+            float offset = c * w;
+            float h = -dy - offset;
 
             PointF[] front =
             {
-                new PointF(left, bottom),
-                new PointF(left, top + offset),
-                new PointF(right - offset, top + offset),
-                new PointF(right - offset, bottom)
+                Start,
+                new PointF(Start.X, Start.Y - h),
+                new PointF(Start.X + w, Start.Y - h),
+                new PointF(Start.X + w, Start.Y)
             };
 
             RectangleS.Start = front[0];
             RectangleS.End = front[2];
             RectangleS.Draw(g, pen);
 
-            RectangleS.Start = new PointF(left + offset, bottom - offset);
-            RectangleS.End = new PointF(right, top);
+            RectangleS.Start = new PointF(Start.X + offset, Start.Y - offset);
+            RectangleS.End = End;
             RectangleS.Draw(g, pen);
 
             foreach (PointF vertex in front)
