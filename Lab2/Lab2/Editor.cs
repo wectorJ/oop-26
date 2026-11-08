@@ -7,6 +7,7 @@ namespace Lab2
     public class Editor
     {
         private const float BorderWidth = 2f;
+        private const float DepthStep = 10f;
 
         public Color color = Color.Black;
         public DashStyle border_style = DashStyle.Solid;
@@ -53,6 +54,15 @@ namespace Lab2
         public void MouseMove(Point p){
             if (_current != null) _current.End = p;
         }
+        public bool MouseWheel(int delta)
+        {
+            if (_current is not CubeShape cube || delta == 0) return false;
+
+            cube.Depth = Math.Max(0f, cube.Depth
+                + DepthStep * delta / System.Windows.Forms.SystemInformation.MouseWheelScrollDelta);
+            return true;
+        }
+
         public void MouseUp(Point p)
         {
             if (_current == null) return;

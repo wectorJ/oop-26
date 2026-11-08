@@ -17,6 +17,7 @@ namespace Lab2
 
         protected override void OnMouseDown(MouseEventArgs e)
         {
+            Focus();
             Text = _editor.CurrentTool.ToString();
             _editor.MouseDown(e.Location);
             base.OnMouseDown(e);
@@ -35,6 +36,18 @@ namespace Lab2
             Text = "Lab2";
             base.OnMouseUp(e);
         }
+        protected override void OnMouseWheel(MouseEventArgs e)
+        {
+            if (_editor.MouseWheel(e.Delta))
+            {
+                if (e is HandledMouseEventArgs handledEvent)
+                    handledEvent.Handled = true;
+                Invalidate();
+            }
+
+            base.OnMouseWheel(e);
+        }
+
         protected override void OnPaint(PaintEventArgs e)
         {
             _editor.Draw(e.Graphics);

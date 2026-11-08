@@ -11,6 +11,8 @@ namespace Lab2
 
         public LineShape LineS { get; }
 
+        public float Depth { get; set; } = 40f;
+
         public CubeShape(PointF s, PointF e)
         {
             Start = s;
@@ -22,12 +24,11 @@ namespace Lab2
 
         public override void Draw(Graphics g, Pen pen)
         {
-            // Depth angle is 45 degrees; depth is half the width.
-            float c = 0.5f / MathF.Sqrt(2f);
+            // Depth angle is 45 degrees; Depth is controlled by the mouse wheel.
+            float offset = Depth / MathF.Sqrt(2f);
             float dx = End.X - Start.X;
             float dy = End.Y - Start.Y;
-            float w = dx / (1f + c);
-            float offset = c * w;
+            float w = dx - offset;
             float h = -dy - offset;
 
             PointF[] front =
