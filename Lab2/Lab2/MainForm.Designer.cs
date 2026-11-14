@@ -39,6 +39,8 @@
             lineToolStripMenuItem = new ToolStripMenuItem();
             rectangleToolStripMenuItem = new ToolStripMenuItem();
             ellipseToolStripMenuItem = new ToolStripMenuItem();
+            oLineOToolStripMenuItem = new ToolStripMenuItem();
+            cubeToolStripMenuItem = new ToolStripMenuItem();
             border_btn = new ToolStripDropDownButton();
             solidToolStripMenuItem = new ToolStripMenuItem();
             dotedToolStripMenuItem = new ToolStripMenuItem();
@@ -50,8 +52,6 @@
             blueToolStripMenuItem = new ToolStripMenuItem();
             undo_btn = new ToolStripButton();
             redo_btn = new ToolStripButton();
-            oLineOToolStripMenuItem = new ToolStripMenuItem();
-            cubeToolStripMenuItem = new ToolStripMenuItem();
             toolStrip1.SuspendLayout();
             toolStrip2.SuspendLayout();
             SuspendLayout();
@@ -147,6 +147,22 @@
             ellipseToolStripMenuItem.Text = "Ellipse";
             ellipseToolStripMenuItem.Click += objectToolStripMenuItem_Click;
             // 
+            // oLineOToolStripMenuItem
+            // 
+            oLineOToolStripMenuItem.Image = Properties.Resources.olineo;
+            oLineOToolStripMenuItem.Name = "oLineOToolStripMenuItem";
+            oLineOToolStripMenuItem.Size = new Size(244, 46);
+            oLineOToolStripMenuItem.Text = "OLineO";
+            oLineOToolStripMenuItem.Click += objectToolStripMenuItem_Click;
+            // 
+            // cubeToolStripMenuItem
+            // 
+            cubeToolStripMenuItem.Image = Properties.Resources.cube;
+            cubeToolStripMenuItem.Name = "cubeToolStripMenuItem";
+            cubeToolStripMenuItem.Size = new Size(244, 46);
+            cubeToolStripMenuItem.Text = "Cube";
+            cubeToolStripMenuItem.Click += objectToolStripMenuItem_Click;
+            // 
             // border_btn
             // 
             border_btn.DisplayStyle = ToolStripItemDisplayStyle.Image;
@@ -234,20 +250,6 @@
             redo_btn.Size = new Size(44, 44);
             redo_btn.Text = "Redo";
             redo_btn.Click += redo_btn_Click;
-            // 
-            // oLineOToolStripMenuItem
-            // 
-            oLineOToolStripMenuItem.Name = "oLineOToolStripMenuItem";
-            oLineOToolStripMenuItem.Size = new Size(244, 46);
-            oLineOToolStripMenuItem.Text = "OLineO";
-            oLineOToolStripMenuItem.Click += objectToolStripMenuItem_Click;
-            // 
-            // cubeToolStripMenuItem
-            // 
-            cubeToolStripMenuItem.Name = "cubeToolStripMenuItem";
-            cubeToolStripMenuItem.Size = new Size(244, 46);
-            cubeToolStripMenuItem.Text = "Cube";
-            cubeToolStripMenuItem.Click += objectToolStripMenuItem_Click;
             // 
             // MainForm
             // 

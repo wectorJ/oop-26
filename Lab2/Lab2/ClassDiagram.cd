@@ -15,7 +15,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Lab2.Editor" Collapsed="true">
-    <Position X="11" Y="1.5" Width="1.5" />
+    <Position X="7.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAEAAAABAAABkEAAAQAAAABIABAFACAIAgABAHAAAA=</HashCode>
       <FileName>Editor.cs</FileName>
@@ -59,7 +59,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Lab2.MainForm" Collapsed="true">
-    <Position X="11" Y="2.25" Width="1.5" />
+    <Position X="7.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAiEAAQIAihBABEEEXCAKRACIJAAYiAIIAAAkggCAQA=</HashCode>
       <FileName>MainForm.cs</FileName>
@@ -95,7 +95,6 @@
     <ShowAsAssociation>
       <Property Name="DotS" />
       <Property Name="LineS" />
-      <Property Name="DotS" />
     </ShowAsAssociation>
   </Class>
   <Class Name="Lab2.CubeShape">
