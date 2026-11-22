@@ -6,7 +6,7 @@ namespace Lab2
     public abstract class Shape
     {
         public PointF Start;
-        public PointF End;
+        public virtual PointF End { get; set; }
 
         public Color Color = Color.Black;
         public DashStyle BorderStyle = DashStyle.Solid;

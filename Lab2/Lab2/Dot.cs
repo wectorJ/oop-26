@@ -7,6 +7,12 @@ namespace Lab2
         public float X { get => Start.X; set => Start = new PointF(value, Start.Y); }
         public float Y { get => Start.Y; set => Start = new PointF(Start.X, value); }
 
+        public override PointF End
+        {
+            get => Start;
+            set => Start = value;
+        }
+
         public DotShape(float x, float y){
             X = x;
             Y = y;
