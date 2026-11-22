@@ -52,6 +52,7 @@
             blueToolStripMenuItem = new ToolStripMenuItem();
             undo_btn = new ToolStripButton();
             redo_btn = new ToolStripButton();
+            table_btn = new ToolStripButton();
             toolStrip1.SuspendLayout();
             toolStrip2.SuspendLayout();
             SuspendLayout();
@@ -59,7 +60,7 @@
             // toolStrip1
             // 
             toolStrip1.ImageScalingSize = new Size(20, 20);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { file_btn, clear_btn });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { file_btn, clear_btn, table_btn });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(800, 27);
@@ -119,7 +120,7 @@
             // 
             dotToolStripMenuItem.Image = Properties.Resources.dot;
             dotToolStripMenuItem.Name = "dotToolStripMenuItem";
-            dotToolStripMenuItem.Size = new Size(244, 46);
+            dotToolStripMenuItem.Size = new Size(158, 26);
             dotToolStripMenuItem.Text = "Dot";
             dotToolStripMenuItem.Click += objectToolStripMenuItem_Click;
             // 
@@ -127,7 +128,7 @@
             // 
             lineToolStripMenuItem.Image = Properties.Resources.line;
             lineToolStripMenuItem.Name = "lineToolStripMenuItem";
-            lineToolStripMenuItem.Size = new Size(244, 46);
+            lineToolStripMenuItem.Size = new Size(158, 26);
             lineToolStripMenuItem.Text = "Line";
             lineToolStripMenuItem.Click += objectToolStripMenuItem_Click;
             // 
@@ -135,7 +136,7 @@
             // 
             rectangleToolStripMenuItem.Image = Properties.Resources.square;
             rectangleToolStripMenuItem.Name = "rectangleToolStripMenuItem";
-            rectangleToolStripMenuItem.Size = new Size(244, 46);
+            rectangleToolStripMenuItem.Size = new Size(158, 26);
             rectangleToolStripMenuItem.Text = "Rectangle";
             rectangleToolStripMenuItem.Click += objectToolStripMenuItem_Click;
             // 
@@ -143,7 +144,7 @@
             // 
             ellipseToolStripMenuItem.Image = Properties.Resources.ellipse;
             ellipseToolStripMenuItem.Name = "ellipseToolStripMenuItem";
-            ellipseToolStripMenuItem.Size = new Size(244, 46);
+            ellipseToolStripMenuItem.Size = new Size(158, 26);
             ellipseToolStripMenuItem.Text = "Ellipse";
             ellipseToolStripMenuItem.Click += objectToolStripMenuItem_Click;
             // 
@@ -151,7 +152,7 @@
             // 
             oLineOToolStripMenuItem.Image = Properties.Resources.olineo;
             oLineOToolStripMenuItem.Name = "oLineOToolStripMenuItem";
-            oLineOToolStripMenuItem.Size = new Size(244, 46);
+            oLineOToolStripMenuItem.Size = new Size(158, 26);
             oLineOToolStripMenuItem.Text = "OLineO";
             oLineOToolStripMenuItem.Click += objectToolStripMenuItem_Click;
             // 
@@ -159,7 +160,7 @@
             // 
             cubeToolStripMenuItem.Image = Properties.Resources.cube;
             cubeToolStripMenuItem.Name = "cubeToolStripMenuItem";
-            cubeToolStripMenuItem.Size = new Size(244, 46);
+            cubeToolStripMenuItem.Size = new Size(158, 26);
             cubeToolStripMenuItem.Text = "Cube";
             cubeToolStripMenuItem.Click += objectToolStripMenuItem_Click;
             // 
@@ -251,6 +252,16 @@
             redo_btn.Text = "Redo";
             redo_btn.Click += redo_btn_Click;
             // 
+            // table_btn
+            // 
+            table_btn.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            table_btn.Image = (Image)resources.GetObject("table_btn.Image");
+            table_btn.ImageTransparentColor = Color.Magenta;
+            table_btn.Name = "table_btn";
+            table_btn.Size = new Size(48, 24);
+            table_btn.Text = "Table";
+            table_btn.Click += table_btn_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -298,5 +309,6 @@
         private ToolStripMenuItem dotToolStripMenuItem;
         private ToolStripMenuItem oLineOToolStripMenuItem;
         private ToolStripMenuItem cubeToolStripMenuItem;
+        private ToolStripButton table_btn;
     }
 }

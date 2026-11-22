@@ -4,11 +4,14 @@ namespace Lab2
 {
     public partial class MainForm : Form
     {
-        private readonly Editor _editor = new();
+        private static readonly Editor _editor = new();
+        private Table? _table;
+
         public MainForm()
         {
             InitializeComponent();
             DoubleBuffered = true;
+            Disposed += (_, _) => _table?.Dispose();
 
             move_btn.CheckOnClick = true;
             toolStrip2.ItemClicked += toolStrip2_ItemClicked;
@@ -148,6 +151,20 @@ namespace Lab2
         private void move_btn_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void table_btn_Click(object sender, EventArgs e)
+        {
+            if (_table is null || _table.IsDisposed)
+                _table = new Table();
+
+            if (!_table.Visible)
+                _table.Show();
+
+            if (_table.WindowState == FormWindowState.Minimized)
+                _table.WindowState = FormWindowState.Normal;
+
+            _table.Activate();
         }
     }
 }
