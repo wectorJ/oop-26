@@ -36,30 +36,7 @@ namespace Lab2
         }
 
         public void MouseDown(Point p){
-            switch (CurrentTool)
-            {
-                case ShapeType.Dot:
-                    _current = new DotShape(p.X, p.Y);
-                    break;
-                case ShapeType.Rectangle:
-                    _current = new RectangleShape(p, p);
-                    break;
-                case ShapeType.Line:
-                    _current = new LineShape(p, p);
-                    break;
-                case ShapeType.Ellipse:
-                    _current = new EllipseShape(p, p);
-                    break;
-                case ShapeType.oLineo:
-                    _current = new oLineoShape(p, p);
-                    break;
-                case ShapeType.Cube:
-                    _current = new CubeShape(p, p);
-                    break;
-                default:
-                    _current = null;
-                    break;
-            }
+            _current = Shape.Create(CurrentTool, p, p);
 
             if (_current != null)
             {
@@ -122,10 +99,14 @@ namespace Lab2
             ShapesChanged?.Invoke(this, EventArgs.Empty);
         }
 
-        public void Clear()
+        public void Clear() => ReplaceShapes(Array.Empty<Shape>());
+
+        public void ReplaceShapes(IEnumerable<Shape> shapes)
         {
+            Shape[] replacement = shapes.ToArray();
             Shapes.Clear();
-            _undoStartIndex = 0;
+            Shapes.AddRange(replacement);
+            _undoStartIndex = Shapes.Count;
             _redo.Clear();
             _current = null;
             SelectedShape = null;

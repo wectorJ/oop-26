@@ -30,7 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             toolStrip1 = new ToolStrip();
-            file_btn = new ToolStripButton();
+            load_btn = new ToolStripButton();
+            save_btn = new ToolStripButton();
             clear_btn = new ToolStripButton();
             toolStrip2 = new ToolStrip();
             move_btn = new ToolStripButton();
@@ -60,21 +61,28 @@
             // toolStrip1
             // 
             toolStrip1.ImageScalingSize = new Size(20, 20);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { file_btn, clear_btn, table_btn });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { load_btn, save_btn, clear_btn, table_btn });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(800, 27);
             toolStrip1.TabIndex = 0;
             toolStrip1.Text = "toolStrip1";
             // 
-            // file_btn
-            // 
-            file_btn.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            file_btn.Image = (Image)resources.GetObject("file_btn.Image");
-            file_btn.ImageTransparentColor = Color.Magenta;
-            file_btn.Name = "file_btn";
-            file_btn.Size = new Size(36, 24);
-            file_btn.Text = "File";
+            // load_btn
+            //
+            load_btn.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            load_btn.Name = "load_btn";
+            load_btn.Size = new Size(46, 24);
+            load_btn.Text = "Load";
+            load_btn.Click += load_btn_Click;
+            //
+            // save_btn
+            //
+            save_btn.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            save_btn.Name = "save_btn";
+            save_btn.Size = new Size(45, 24);
+            save_btn.Text = "Save";
+            save_btn.Click += save_btn_Click;
             // 
             // clear_btn
             // 
@@ -288,7 +296,8 @@
 
         private ToolStrip toolStrip1;
         private ToolStrip toolStrip2;
-        private ToolStripButton file_btn;
+        private ToolStripButton load_btn;
+        private ToolStripButton save_btn;
         private ToolStripDropDownButton obj_btn;
         private ToolStripMenuItem lineToolStripMenuItem;
         private ToolStripMenuItem rectangleToolStripMenuItem;

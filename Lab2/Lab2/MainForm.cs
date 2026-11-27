@@ -4,6 +4,7 @@ namespace Lab2
 {
     public partial class MainForm : Form
     {
+        private const string CsvFilter = "CSV files (*.csv)|*.csv";
         private static readonly Editor _editor = new();
         private Table? _table;
 
@@ -118,6 +119,54 @@ namespace Lab2
 
             _editor.SetColor(color);
             Invalidate();
+        }
+
+        private void load_btn_Click(object? sender, EventArgs e)
+        {
+            using var dialog = new OpenFileDialog
+            {
+                Title = "Load drawing",
+                Filter = CsvFilter,
+                DefaultExt = "csv",
+                RestoreDirectory = true
+            };
+            if (dialog.ShowDialog(this) != DialogResult.OK) return;
+
+            IReadOnlyList<Shape> shapes;
+            try
+            {
+                shapes = FileController.Load(dialog.FileName);
+            }
+            catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or InvalidDataException)
+            {
+                MessageBox.Show(this, ex.Message, "Could not load drawing", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            _editor.ReplaceShapes(shapes);
+        }
+
+        private void save_btn_Click(object? sender, EventArgs e)
+        {
+            using var dialog = new SaveFileDialog
+            {
+                Title = "Save drawing",
+                Filter = CsvFilter,
+                DefaultExt = "csv",
+                AddExtension = true,
+                OverwritePrompt = true,
+                RestoreDirectory = true
+            };
+            if (dialog.ShowDialog(this) != DialogResult.OK) return;
+
+            try
+            {
+                FileController.Save(dialog.FileName, _editor.Shapes);
+            }
+            catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or InvalidDataException)
+            {
+                MessageBox.Show(this, ex.Message, "Could not save drawing", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void clear_btn_Click(object sender, EventArgs e)
