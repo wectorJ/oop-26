@@ -11,7 +11,14 @@ namespace Lab2
         {
             InitializeComponent();
             DoubleBuffered = true;
-            Disposed += (_, _) => _table?.Dispose();
+            _editor.ShapesChanged += Editor_ShapesChanged;
+            _editor.SelectionChanged += Editor_SelectionChanged;
+            Disposed += (_, _) =>
+            {
+                _editor.ShapesChanged -= Editor_ShapesChanged;
+                _editor.SelectionChanged -= Editor_SelectionChanged;
+                _table?.Dispose();
+            };
 
             move_btn.CheckOnClick = true;
             toolStrip2.ItemClicked += toolStrip2_ItemClicked;
@@ -33,8 +40,6 @@ namespace Lab2
         protected override void OnMouseUp(MouseEventArgs e)
         {
             _editor.MouseUp(e.Location);
-            UpdateHistoryButtons();
-            Invalidate();
             Text = "Lab2";
             base.OnMouseUp(e);
         }
@@ -118,23 +123,25 @@ namespace Lab2
         private void clear_btn_Click(object sender, EventArgs e)
         {
             _editor.Clear();
-            UpdateHistoryButtons();
-            Invalidate();
         }
 
         private void undo_btn_Click(object sender, EventArgs e)
         {
             _editor.Undo();
-            UpdateHistoryButtons();
-            Invalidate();
         }
 
         private void redo_btn_Click(object sender, EventArgs e)
         {
             _editor.Redo();
+        }
+
+        private void Editor_ShapesChanged(object? sender, EventArgs e)
+        {
             UpdateHistoryButtons();
             Invalidate();
         }
+
+        private void Editor_SelectionChanged(object? sender, EventArgs e) => Invalidate();
 
         private void UpdateHistoryButtons()
         {
@@ -156,7 +163,7 @@ namespace Lab2
         private void table_btn_Click(object sender, EventArgs e)
         {
             if (_table is null || _table.IsDisposed)
-                _table = new Table();
+                _table = new Table(_editor);
 
             if (!_table.Visible)
                 _table.Show();

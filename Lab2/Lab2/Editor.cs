@@ -12,11 +12,28 @@ namespace Lab2
         public DashStyle border_style = DashStyle.Solid;
 
         public List<Shape> Shapes = new(115);
+        public event EventHandler? ShapesChanged;
+        public event EventHandler? SelectionChanged;
         private readonly Stack<Shape> _redo = new();
-        public bool CanUndo => Shapes.Count > 0;
+        // Undo can only remove shapes added since the last history reset.
+        private int _undoStartIndex;
+        private Shape? _selectedShape;
+        public bool CanUndo => Shapes.Count > _undoStartIndex;
         public bool CanRedo => _redo.Count > 0;
         private Shape? _current;
         public ShapeType CurrentTool = ShapeType.Rectangle;
+
+        public Shape? SelectedShape
+        {
+            get => _selectedShape;
+            set
+            {
+                if (ReferenceEquals(_selectedShape, value)) return;
+
+                _selectedShape = value;
+                SelectionChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
 
         public void MouseDown(Point p){
             switch (CurrentTool)
@@ -60,6 +77,7 @@ namespace Lab2
             Shapes.Add(_current);
             _redo.Clear();
             _current = null;
+            ShapesChanged?.Invoke(this, EventArgs.Empty);
         }
 
         public void Undo()
@@ -67,8 +85,11 @@ namespace Lab2
             if (!CanUndo) return;
 
             int last = Shapes.Count - 1;
-            _redo.Push(Shapes[last]);
+            Shape shape = Shapes[last];
+            _redo.Push(shape);
             Shapes.RemoveAt(last);
+            if (ReferenceEquals(SelectedShape, shape)) SelectedShape = null;
+            ShapesChanged?.Invoke(this, EventArgs.Empty);
         }
 
         public void Redo()
@@ -76,6 +97,7 @@ namespace Lab2
             if (!CanRedo) return;
 
             Shapes.Add(_redo.Pop());
+            ShapesChanged?.Invoke(this, EventArgs.Empty);
         }
 
         public void SetColor(Color color)
@@ -88,11 +110,26 @@ namespace Lab2
             border_style = style;
         }
 
+        public void RemoveShape(Shape shape)
+        {
+            int index = Shapes.FindIndex(item => ReferenceEquals(item, shape));
+            if (index < 0) return;
+
+            Shapes.RemoveAt(index);
+            _undoStartIndex = Shapes.Count;
+            _redo.Clear();
+            if (ReferenceEquals(SelectedShape, shape)) SelectedShape = null;
+            ShapesChanged?.Invoke(this, EventArgs.Empty);
+        }
+
         public void Clear()
         {
             Shapes.Clear();
+            _undoStartIndex = 0;
             _redo.Clear();
             _current = null;
+            SelectedShape = null;
+            ShapesChanged?.Invoke(this, EventArgs.Empty);
         }
 
         public void Draw(Graphics g)
@@ -106,9 +143,9 @@ namespace Lab2
                 DrawShape(g, _current, pen);
         }
 
-        private static void DrawShape(Graphics g, Shape shape, Pen pen)
+        private void DrawShape(Graphics g, Shape shape, Pen pen)
         {
-            pen.Color = shape.Color;
+            pen.Color = ReferenceEquals(shape, SelectedShape) ? Color.Orange : shape.Color;
             pen.DashStyle = shape.BorderStyle;
             
             shape.Draw(g, pen);
