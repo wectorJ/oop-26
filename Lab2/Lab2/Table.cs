@@ -30,7 +30,7 @@ namespace Lab2
 
             EventHandler refreshRows = (_, _) => Reload(editor.Shapes);
             editor.ShapesChanged += refreshRows;
-            Disposed += (_, _) =>
+            Disposed += (_, _) => //delete?
             {
                 editor.ShapesChanged -= refreshRows;
                 editor.SelectedShape = null;

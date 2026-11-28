@@ -3,7 +3,7 @@
   <Class Name="Lab2.Shape">
     <Position X="5.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAAAAAACAAAgAAAAAEAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <HashCode>AAIAAAAAACAAAgAAAAAEAAAAAAAAAEAAAAAAgAAAAAA=</HashCode>
       <FileName>Shape.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -14,25 +14,17 @@
       <FileName>RectangleShape.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Lab2.Editor" Collapsed="true">
-    <Position X="7.75" Y="1.75" Width="1.5" />
+  <Class Name="Lab2.Editor">
+    <Position X="12" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAEAAAABAAABkEAAAQAAAABIABAFACAIAgABAHAAAA=</HashCode>
+      <HashCode>AAAEAABAVAAABkEDAAQAAAABIABAFACAIAgARAHAAEA=</HashCode>
       <FileName>Editor.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Lab2.DotShape">
     <Position X="7.5" Y="5.5" Width="1.5" />
-    <InheritanceLine Type="Lab2.Shape" ManuallyRouted="true">
-      <Path>
-        <Point X="6.5" Y="3.882" />
-        <Point X="6.5" Y="4.487" />
-        <Point X="8.25" Y="4.487" />
-        <Point X="8.25" Y="5.5" />
-      </Path>
-    </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAYAA=</HashCode>
+      <HashCode>AAIAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAYAA=</HashCode>
       <FileName>Dot.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -45,14 +37,6 @@
   </Class>
   <Class Name="Lab2.LineShape">
     <Position X="5.75" Y="5.25" Width="1.5" />
-    <InheritanceLine Type="Lab2.Shape" ManuallyRouted="true">
-      <Path>
-        <Point X="6.5" Y="3.882" />
-        <Point X="6.5" Y="4.407" />
-        <Point X="6.5" Y="4.407" />
-        <Point X="6.5" Y="5.25" />
-      </Path>
-    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>LineShape.cs</FileName>
@@ -61,20 +45,12 @@
   <Class Name="Lab2.MainForm" Collapsed="true">
     <Position X="7.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAiEAAQIAihBABEEEXCAKRACIJAAYiAIIAAAkggCAQA=</HashCode>
+      <HashCode>AEyEAAQIAihDAhEEEfCBKRECIJAAYiAJIIAAmgACAQA=</HashCode>
       <FileName>MainForm.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Lab2.oLineoShape">
     <Position X="10.25" Y="5.25" Width="1.5" />
-    <InheritanceLine Type="Lab2.Shape" ManuallyRouted="true">
-      <Path>
-        <Point X="6.5" Y="3.882" />
-        <Point X="6.5" Y="4.233" />
-        <Point X="11" Y="4.233" />
-        <Point X="11" Y="5.25" />
-      </Path>
-    </InheritanceLine>
     <AssociationLine Name="LineS" Type="Lab2.LineShape" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
         <Point X="11" Y="5.25" />
@@ -122,6 +98,20 @@
       <Property Name="RectangleS" />
       <Property Name="LineS" />
     </ShowAsAssociation>
+  </Class>
+  <Class Name="Lab2.FileController">
+    <Position X="9.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAgIIAAAAIAAAAAAAAAAAAAAAABAAAgAAAAAgAAAA=</HashCode>
+      <FileName>FileController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab2.Table">
+    <Position X="14" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAgCgAAAACAACAAAAGgEgAAAAgCAhAAAAAAAA=</HashCode>
+      <FileName>Table.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
