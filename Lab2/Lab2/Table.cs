@@ -12,7 +12,8 @@ namespace Lab2
 {
     public partial class Table : Form
     {
-        private readonly Editor? _editor;
+        public event Action<Shape> SelectedShapeChanged;
+        public event Action<Shape> DeleteRequested;
 
         private Shape? SelectedShape => dataGridView1.SelectedRows.Count == 1
             ? dataGridView1.SelectedRows[0].Tag as Shape
@@ -21,20 +22,6 @@ namespace Lab2
         public Table()
         {
             InitializeComponent();
-        }
-
-        public Table(Editor editor) : this()
-        {
-            _editor = editor;
-            Reload(editor.Shapes);
-
-            EventHandler refreshRows = (_, _) => Reload(editor.Shapes);
-            editor.ShapesChanged += refreshRows;
-            Disposed += (_, _) => //delete?
-            {
-                editor.ShapesChanged -= refreshRows;
-                editor.SelectedShape = null;
-            };
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
@@ -50,7 +37,7 @@ namespace Lab2
             }
         }
 
-        private void Reload(IEnumerable<Shape> shapes)
+        internal void Reload(IEnumerable<Shape> shapes)
         {
             Shape? selectedShape = SelectedShape;
             dataGridView1.SelectionChanged -= ShapesGrid_SelectionChanged;
@@ -90,12 +77,12 @@ namespace Lab2
         {
             Shape? shape = SelectedShape;
             deleteSelectedButton.Enabled = shape is not null;
-            if (_editor is not null) _editor.SelectedShape = shape;
+            SelectedShapeChanged?.Invoke(shape);
         }
 
         private void DeleteSelectedButton_Click(object? sender, EventArgs e)
         {
-            if (SelectedShape is Shape shape) _editor?.RemoveShape(shape);
+            if (SelectedShape is Shape shape) DeleteRequested?.Invoke(shape);
         }
     }
 }

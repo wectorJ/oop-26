@@ -4,9 +4,14 @@ using System.Drawing.Drawing2D;
 
 namespace Lab2
 {
-    public class Editor
+    public sealed class Editor
     {
         private const float BorderWidth = 2f;
+        public static Editor Instance { get; } = new();
+
+        private Editor()
+        {
+        }
 
         public Color color = Color.Black;
         public DashStyle border_style = DashStyle.Solid;

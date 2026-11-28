@@ -9,7 +9,7 @@ namespace Lab2
         private const string Header = "Type,StartX,StartY,EndX,EndY,Color,BorderStyle";
         private static readonly string[] Columns = Header.Split(',');
 
-        public static IReadOnlyList<Shape> Load(string path)
+        public static IReadOnlyList<Shape> Load(string path, IWin32Window? owner = null)
         {
             using var parser = new TextFieldParser(path);
             parser.SetDelimiters(",");
@@ -23,7 +23,7 @@ namespace Lab2
 
                 var shapes = new List<Shape>();
                 while (parser.ReadFields() is { } fields)
-                    shapes.Add(ReadShape(fields, shapes.Count + 2));
+                    shapes.Add(ReadShape(fields, shapes.Count + 2, owner));
 
                 return shapes;
             }
@@ -57,7 +57,7 @@ namespace Lab2
             }
         }
 
-        private static Shape ReadShape(string[] fields, int record)
+        private static Shape ReadShape(string[] fields, int record, IWin32Window? owner)
         {
             if (fields.Length != Columns.Length)
                 throw new InvalidDataException($"CSV record {record}: expected {Columns.Length} fields.");
@@ -67,9 +67,6 @@ namespace Lab2
 
             var start = new PointF(ReadCoordinate(fields, 1, record), ReadCoordinate(fields, 2, record));
             var end = new PointF(ReadCoordinate(fields, 3, record), ReadCoordinate(fields, 4, record));
-            if (type == ShapeType.Dot && start != end)
-                throw new InvalidDataException($"CSV record {record}: a dot must have matching start and end coordinates.");
-
             string color = fields[5];
             if (color.Length != 9 || color[0] != '#' ||
                 !uint.TryParse(color.AsSpan(1), NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture, out uint argb))
@@ -77,6 +74,14 @@ namespace Lab2
 
             if (!TryReadName(fields[6], out DashStyle style) || style == DashStyle.Custom)
                 throw new InvalidDataException($"CSV record {record}: unsupported border style '{fields[6]}'.");
+
+            if (type == ShapeType.Dot && start != end)
+            {
+                start = end;
+                MessageBox.Show(owner,
+                    $"CSV record {record}: the dot's start and end coordinates differ. The end coordinates will be used.",
+                    "Drawing import warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); //TODO to list
+            }
 
             Shape shape = Shape.Create(type, start, end)
                 ?? throw new InvalidDataException($"CSV record {record}: unsupported figure type '{type}'.");

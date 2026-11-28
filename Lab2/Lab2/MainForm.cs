@@ -5,7 +5,7 @@ namespace Lab2
     public partial class MainForm : Form
     {
         private const string CsvFilter = "CSV files (*.csv)|*.csv";
-        private static readonly Editor _editor = new();
+        private readonly Editor _editor = Editor.Instance;
         private Table? _table;
 
         public MainForm()
@@ -135,7 +135,7 @@ namespace Lab2
             IReadOnlyList<Shape> shapes;
             try
             {
-                shapes = FileController.Load(dialog.FileName);
+                shapes = FileController.Load(dialog.FileName, this);
             }
             catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or InvalidDataException)
             {
@@ -187,6 +187,9 @@ namespace Lab2
         private void Editor_ShapesChanged(object? sender, EventArgs e)
         {
             UpdateHistoryButtons();
+            if (_table is { IsDisposed: false })
+                _table.Reload(_editor.Shapes);
+
             Invalidate();
         }
 
@@ -212,7 +215,13 @@ namespace Lab2
         private void table_btn_Click(object sender, EventArgs e)
         {
             if (_table is null || _table.IsDisposed)
-                _table = new Table(_editor);
+            {
+                _table = new Table();
+                _table.SelectedShapeChanged += shape => _editor.SelectedShape = shape;
+                _table.DeleteRequested += _editor.RemoveShape;
+                _table.Disposed += (_, _) => _editor.SelectedShape = null;
+                _table.Reload(_editor.Shapes);
+            }
 
             if (!_table.Visible)
                 _table.Show();
